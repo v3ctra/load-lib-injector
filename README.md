@@ -17,6 +17,6 @@ Compile with Microsoft Visual Studio 2019, Release x86.
 ## Credits
  - Daniel Krupinski
  - online-9
- - Me (Hitchance)
+ - Me
  
  Have a nice day :)
