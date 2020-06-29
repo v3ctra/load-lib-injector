@@ -11,7 +11,7 @@ Compile with Microsoft Visual Studio 2019, Release x86.
  If everything is fine you will see "module injected" in console.
 
 ## status
- - Undetected (20.06.2020)
+ - Unknown (20.06.2020)
 
 
 ## Credits
