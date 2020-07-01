@@ -21,7 +21,7 @@ bool DoesFileExist(const char* name) {
 void bypass()
 {
 	// Restore original NtOpenFile from external process
-	//credits: Daniel Krupiñski(pozdro dla ciebie byczku <3)
+	//credits: Daniel KrupiÃ±ski(pozdro dla ciebie byczku <3)
 	LPVOID ntOpenFile = GetProcAddress(LoadLibraryW(L"ntdll"), "NtOpenFile");
 	if (ntOpenFile) {
 		char originalBytes[5];
@@ -49,25 +49,24 @@ int main()
 	inj.clientDLL = inj.GetModule(pid, "client.dll");
 
 	if (DoesFileExist("cheat.dll")) {
-		//file exist
+	bypass();
+
+		if (inj.inject(pid, "cheat.dll")) {
+			cout << "module injected!\n\n" << endl;
+			Sleep(2000);
+			exit(0);
+		}
+		else
+		{
+			cout << "Injection failed!\n\n" << endl;
+			Sleep(2000);
+			exit(0);
+		}
+	
 	}
 	else
 	{
 		cout << "cannot find cheat.dll\n\n";
-		Sleep(2000);
-		exit(0);
-	}
-
-	bypass();
-
-	if (inj.inject(pid, "cheat.dll")) {
-		cout << "module injected!\n\n" << endl;
-		Sleep(2000);
-		exit(0);
-	}
-	else
-	{
-		cout << "Injection failed!\n\n" << endl;
 		Sleep(2000);
 		exit(0);
 	}
