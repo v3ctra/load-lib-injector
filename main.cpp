@@ -30,15 +30,24 @@ void bypass()
 	}
 	else
 	{
-		cout << "Unable to bypass :(\n";
+		cout << "Imposible Hacer Bypass :(\n";
 	}
 }
 
 int main()
 {
-	SetConsoleTitle("totally not pasted injector :)");
+	SetConsoleTitle("VACa Inyector v.1 - www.CheatersUnidos.tk - 9 - Julio - 2020 :)");
 	
-	cout << "Credits:\n Daniel Krupinski\n online-9\n Hitchance\n\n" << endl;
+	cout << "****************************************************************" << endl;
+	cout << "* VACa Inyector v.1 - www.CheatersUnidos.tk - 9 - Julio - 2020 *" << endl;
+	cout << "****************************************************************\n\n" << endl;
+	
+	
+	cout << "Creadores:\n Daniel Krupinski, online-9, Hitchance\n\n" << endl;
+
+	cout << "Traducido y Recompilado:\n SuperK2 & Gauxalot\n\n" << endl;
+
+	cout << "www.CheatersUnidos.tk - Discord: https://discord.gg/4Sh8PJP" << endl;
 
 	inj.hwndproc = FindWindowA(0, "Counter-Strike: Global Offensive");
 
@@ -52,22 +61,22 @@ int main()
 	bypass();
 
 		if (inj.inject(pid, "cheat.dll")) {
-			cout << "module injected!\n\n" << endl;
-			Sleep(2000);
+			cout << "CHEAT INYECTADO CORRECTAMENTE, DISFRUTA ! GLHF !\n\n" << endl;
+			Sleep(5000);
 			exit(0);
 		}
 		else
 		{
-			cout << "Injection failed!\n\n" << endl;
-			Sleep(2000);
+			cout << "ERROR ! La Inyeccion ha fallado! \n\n" << endl;
+			Sleep(5000);
 			exit(0);
 		}
 	
 	}
 	else
 	{
-		cout << "cannot find cheat.dll\n\n";
-		Sleep(2000);
+		cout << "EL FICHERO cheat.dll NO SE HA ENCONTRADO, RECUERDA RENOMBRAR TU .DLL como cheat.dll\n\n";
+		Sleep(5000);
 		exit(0);
 	}
 
