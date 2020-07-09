@@ -1,6 +1,8 @@
 # load-lib injector
 An load-library injector, that is able to bypass new valve's vac module.
 
+Traducido a Español by SuperK2 / http://www.CheatersUnidos.tk
+
 ## Building
 Compile with Microsoft Visual Studio 2019, Release x86.
 
