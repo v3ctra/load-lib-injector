@@ -1,6 +1,8 @@
 #include <Windows.h>
 #include <iostream>
+
 #include "memory.hpp"
+#include "ifexist.hpp"
 
 using namespace std;
 
@@ -8,21 +10,13 @@ Injector inj;
 
 DWORD pid;
 
-bool DoesFileExist(const char* name) {
-	if (FILE* file = fopen(name, "r")) {
-		fclose(file);
-		return true;
-	}
-	else {
-		return false;
-	}
-}
+//now it's global
+LPVOID ntOpenFile = GetProcAddress(LoadLibraryW(L"ntdll"), "NtOpenFile");
 
 void bypass()
 {
 	// Restore original NtOpenFile from external process
 	//credits: Daniel Krupiñski(pozdro dla ciebie byczku <3)
-	LPVOID ntOpenFile = GetProcAddress(LoadLibraryW(L"ntdll"), "NtOpenFile");
 	if (ntOpenFile) {
 		char originalBytes[5];
 		memcpy(originalBytes, ntOpenFile, 5);
@@ -30,7 +24,27 @@ void bypass()
 	}
 	else
 	{
+
 		cout << "Imposible Hacer Bypass :(\n";
+		Sleep(2000);
+		exit(-1);
+	}
+}
+
+void Backup()
+{
+	if (ntOpenFile) {
+		//So, when I patching first 5 bytes I need to backup them to 0? (I think)
+		char originalBytes[5];
+		memcpy(originalBytes, ntOpenFile, 5);
+		WriteProcessMemory(inj.process, ntOpenFile, originalBytes, 0, NULL);
+	}
+	else
+	{
+		cout << "Unable to backup :(\n";
+		Sleep(2000);
+		exit(-1);
+
 	}
 }
 
@@ -58,26 +72,31 @@ int main()
 	inj.clientDLL = inj.GetModule(pid, "client.dll");
 
 	if (DoesFileExist("cheat.dll")) {
-	bypass();
+		bypass();
 
 		if (inj.inject(pid, "cheat.dll")) {
+
 			cout << "CHEAT INYECTADO CORRECTAMENTE, DISFRUTA ! GLHF !\n\n" << endl;
 			Sleep(5000);
+
 			exit(0);
 		}
 		else
 		{
+
 			cout << "ERROR ! La Inyeccion ha fallado! \n\n" << endl;
 			Sleep(5000);
 			exit(0);
+
 		}
 	
 	}
 	else
-	{
+
 		cout << "EL FICHERO cheat.dll NO SE HA ENCONTRADO, RECUERDA RENOMBRAR TU .DLL como cheat.dll\n\n";
 		Sleep(5000);
 		exit(0);
+
 	}
 
 	return 0;
