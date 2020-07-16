@@ -1,4 +1,5 @@
-# Inyector VACa - Sencillo inyector de DLLs para el Juego CS:GO
+# Inyector VACa
+# Sencillo inyector de DLLs para el Juego CS:GO
 
 Forked from: https://github.com/AMATEURZ1337/load-lib-injector
 Special Thanks to: Daniel Krupinski, online-9 & Hitchance.
