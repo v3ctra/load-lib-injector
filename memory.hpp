@@ -1,13 +1,7 @@
 #pragma once
-
-
-
 #include <Windows.h>
 #include <TlHelp32.h>
-
-
-
-
+#pragma warning(disable: 4996)
 
 class Injector
 {
@@ -23,7 +17,7 @@ public:
 		mEntry.dwSize = sizeof(MODULEENTRY32);
 		do
 		{
-			if (!strcmp(mEntry.szModule, name))
+			if (!strcmp((const char *)mEntry.szModule, name))
 			{
 				CloseHandle(snapshot);
 				return (DWORD)mEntry.modBaseAddr;
@@ -40,7 +34,7 @@ public:
 		}
 
 		char myDLL[MAX_PATH];
-		GetFullPathName(dll, MAX_PATH, myDLL, 0);
+		GetFullPathName((LPCWSTR)dll, MAX_PATH, (LPWSTR)myDLL, 0);
 
 		HANDLE hProcess = OpenProcess(PROCESS_CREATE_THREAD | PROCESS_QUERY_INFORMATION | PROCESS_VM_READ | PROCESS_VM_WRITE | PROCESS_VM_OPERATION, FALSE, pid);
 

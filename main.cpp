@@ -48,7 +48,7 @@ void Backup()
 
 int main()
 {
-	SetConsoleTitle("totally not pasted injector :)");
+	SetConsoleTitle(L"totally not pasted injector :)");
 	
 	cout << "Credits:\n Daniel Krupinski\n online-9\n Hitchance\n\n" << endl;
 
