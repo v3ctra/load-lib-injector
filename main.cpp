@@ -52,7 +52,7 @@ int main()
 	
 	cout << "Credits:\n Daniel Krupinski\n online-9\n Hitchance\n\n" << endl;
 
-	inj.hwndproc = FindWindowA(0, "Counter-Strike: Global Offensive");
+	inj.hwndproc = FindWindowA("Valve001", nullptr);
 
 
 	GetWindowThreadProcessId(inj.hwndproc, &pid);
